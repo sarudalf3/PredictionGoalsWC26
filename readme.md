@@ -169,6 +169,7 @@ Se puede usar la predicción de los próximos partidos para configurar una métr
 | 2026-06-27 | POR    | Colombia                         |                 1 |
 | 2026-06-27 | UZB    | Democratic Republic of the Congo |                 1 |
 
+
 ## 🛠️ Tecnologías Utilizadas
 **Lenguaje**: Python
 
