@@ -102,7 +102,6 @@ Se puede usar la predicción de los próximos partidos para configurar una métr
 
 **Pronóstico Próximos Partidos:** Los goles que el modelo predice para los siguientes partidos del mundial son los siguientes:
 
-```
 | Date       | Team   | Opponent                         |   Goles_Estimados |
 |:-----------|:-------|:---------------------------------|------------------:|
 | 2026-06-22 | ALG    | Jordan                           |                 1 |
@@ -169,7 +168,6 @@ Se puede usar la predicción de los próximos partidos para configurar una métr
 | 2026-06-27 | PAN    | England                          |                 0 |
 | 2026-06-27 | POR    | Colombia                         |                 1 |
 | 2026-06-27 | UZB    | Democratic Republic of the Congo |                 1 |
-```
 
 ## 🛠️ Tecnologías Utilizadas
 **Lenguaje**: Python
