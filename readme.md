@@ -102,73 +102,74 @@ Se puede usar la predicción de los próximos partidos para configurar una métr
 
 **Pronóstico Próximos Partidos:** Los goles que el modelo predice para los siguientes partidos del mundial son los siguientes:
 
+```
 | Date       | Team   | Opponent                         |   Goles_Estimados |
 |:-----------|:-------|:---------------------------------|------------------:|
-| 2026-06-22 | ALG    | Jordan                           |                 2 |
+| 2026-06-22 | ALG    | Jordan                           |                 1 |
 | 2026-06-22 | ARG    | Austria                          |                 2 |
-| 2026-06-22 | AUT    | Argentina                        |                 1 |
+| 2026-06-22 | AUT    | Argentina                        |                 0 |
 | 2026-06-22 | FRA    | Iraq                             |                 3 |
-| 2026-06-22 | IRQ    | France                           |                 1 |
+| 2026-06-22 | IRQ    | France                           |                 0 |
 | 2026-06-22 | JOR    | Algeria                          |                 1 |
 | 2026-06-22 | NOR    | Senegal                          |                 1 |
-| 2026-06-22 | SEN    | Norway                           |                 2 |
-| 2026-06-23 | COD    | Colombia                         |                 1 |
+| 2026-06-22 | SEN    | Norway                           |                 1 |
+| 2026-06-23 | COD    | Colombia                         |                 0 |
 | 2026-06-23 | COL    | Democratic Republic of the Congo |                 2 |
-| 2026-06-23 | CRO    | Panama                           |                 2 |
-| 2026-06-23 | ENG    | Ghana                            |                 3 |
-| 2026-06-23 | GHA    | England                          |                 1 |
+| 2026-06-23 | CRO    | Panama                           |                 1 |
+| 2026-06-23 | ENG    | Ghana                            |                 2 |
+| 2026-06-23 | GHA    | England                          |                 0 |
 | 2026-06-23 | PAN    | Croatia                          |                 1 |
 | 2026-06-23 | POR    | Uzbekistan                       |                 2 |
-| 2026-06-23 | UZB    | Portugal                         |                 1 |
+| 2026-06-23 | UZB    | Portugal                         |                 0 |
 | 2026-06-24 | BIH    | Qatar                            |                 1 |
 | 2026-06-24 | BRA    | Scotland                         |                 2 |
 | 2026-06-24 | CAN    | Switzerland                      |                 1 |
-| 2026-06-24 | CZE    | Mexico                           |                 1 |
-| 2026-06-24 | HAI    | Morocco                          |                 1 |
-| 2026-06-24 | KOR    | South Africa                     |                 2 |
-| 2026-06-24 | MAR    | Haiti                            |                 3 |
+| 2026-06-24 | CZE    | Mexico                           |                 0 |
+| 2026-06-24 | HAI    | Morocco                          |                 0 |
+| 2026-06-24 | KOR    | South Africa                     |                 1 |
+| 2026-06-24 | MAR    | Haiti                            |                 2 |
 | 2026-06-24 | MEX    | Czech Republic                   |                 2 |
 | 2026-06-24 | QAT    | Bosnia and Herzegovina           |                 1 |
 | 2026-06-24 | RSA    | South Korea                      |                 1 |
-| 2026-06-24 | SCO    | Brazil                           |                 1 |
-| 2026-06-24 | SUI    | Canada                           |                 2 |
-| 2026-06-25 | AUS    | Paraguay                         |                 2 |
+| 2026-06-24 | SCO    | Brazil                           |                 0 |
+| 2026-06-24 | SUI    | Canada                           |                 1 |
+| 2026-06-25 | AUS    | Paraguay                         |                 1 |
 | 2026-06-25 | CIV    | Curaçao                          |                 2 |
-| 2026-06-25 | CUW    | Ivory Coast                      |                 1 |
+| 2026-06-25 | CUW    | Ivory Coast                      |                 0 |
 | 2026-06-25 | ECU    | Germany                          |                 1 |
 | 2026-06-25 | GER    | Ecuador                          |                 2 |
-| 2026-06-25 | JPN    | Sweden                           |                 2 |
+| 2026-06-25 | JPN    | Sweden                           |                 1 |
 | 2026-06-25 | NED    | Tunisia                          |                 2 |
 | 2026-06-25 | PAR    | Australia                        |                 1 |
 | 2026-06-25 | SWE    | Japan                            |                 1 |
-| 2026-06-25 | TUN    | Netherlands                      |                 1 |
+| 2026-06-25 | TUN    | Netherlands                      |                 0 |
 | 2026-06-25 | TUR    | United States                    |                 1 |
-| 2026-06-25 | USA    | Turkey                           |                 2 |
-| 2026-06-26 | BEL    | New Zealand                      |                 3 |
+| 2026-06-25 | USA    | Turkey                           |                 1 |
+| 2026-06-26 | BEL    | New Zealand                      |                 2 |
 | 2026-06-26 | CPV    | Saudi Arabia                     |                 1 |
 | 2026-06-26 | EGY    | Iran                             |                 1 |
-| 2026-06-26 | ESP    | Uruguay                          |                 2 |
+| 2026-06-26 | ESP    | Uruguay                          |                 1 |
 | 2026-06-26 | FRA    | Norway                           |                 2 |
-| 2026-06-26 | IRN    | Egypt                            |                 2 |
-| 2026-06-26 | IRQ    | Senegal                          |                 1 |
+| 2026-06-26 | IRN    | Egypt                            |                 1 |
+| 2026-06-26 | IRQ    | Senegal                          |                 0 |
 | 2026-06-26 | KSA    | Cape Verde                       |                 1 |
-| 2026-06-26 | NOR    | France                           |                 1 |
-| 2026-06-26 | NZL    | Belgium                          |                 1 |
+| 2026-06-26 | NOR    | France                           |                 0 |
+| 2026-06-26 | NZL    | Belgium                          |                 0 |
 | 2026-06-26 | SEN    | Iraq                             |                 2 |
 | 2026-06-26 | URU    | Spain                            |                 1 |
 | 2026-06-27 | ALG    | Austria                          |                 1 |
 | 2026-06-27 | ARG    | Jordan                           |                 3 |
-| 2026-06-27 | AUT    | Algeria                          |                 2 |
+| 2026-06-27 | AUT    | Algeria                          |                 1 |
 | 2026-06-27 | COD    | Uzbekistan                       |                 1 |
 | 2026-06-27 | COL    | Portugal                         |                 1 |
 | 2026-06-27 | CRO    | Ghana                            |                 2 |
 | 2026-06-27 | ENG    | Panama                           |                 2 |
-| 2026-06-27 | GHA    | Croatia                          |                 1 |
-| 2026-06-27 | JOR    | Argentina                        |                 1 |
-| 2026-06-27 | PAN    | England                          |                 1 |
+| 2026-06-27 | GHA    | Croatia                          |                 0 |
+| 2026-06-27 | JOR    | Argentina                        |                 0 |
+| 2026-06-27 | PAN    | England                          |                 0 |
 | 2026-06-27 | POR    | Colombia                         |                 1 |
 | 2026-06-27 | UZB    | Democratic Republic of the Congo |                 1 |
-
+```
 
 ## 🛠️ Tecnologías Utilizadas
 **Lenguaje**: Python
