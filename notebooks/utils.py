@@ -551,3 +551,141 @@ def games_type04(url, codigo_pais, df_ranking_fifa):
         "Es_Tiempo_Extra": "a.e.t." in marcador_crudo.lower()
     })
     return pd.DataFrame(partidos)
+
+def games_iran(url, codigo_pais, df_ranking_fifa):    
+    print(f"Extrayendo para Irán/Tabla Compleja: {codigo_pais}...")
+    headers = {'User-Agent': 'Mozilla/5.0'}
+
+    try:
+        respuesta = requests.get(url, headers=headers)
+        soup = BeautifulSoup(respuesta.text, 'html.parser')
+    except Exception as e:
+        print(f"Error: {e}")
+        return pd.DataFrame()
+
+    partidos = []
+
+    ciudad_a_pais = {
+        'Al-Ain': 'United Arab Emirates',
+        'Al-Rayyan': 'Qatar',
+        'Amman': 'Jordan',
+        'Antalya': 'Turkey',
+        'Arad': 'Bahrain',
+        'Ashgabat': 'Turkmenistan',
+        'Bishkek': 'Kyrgyzstan',
+        'Doha': 'Qatar',
+        'Dubai': 'United Arab Emirates',
+        'Fooladshahr': 'Iran',
+        'Hisar': 'Tajikistan',
+        'Hong Kong': 'Hong Kong',
+        'Inglewood': 'USA',
+        'Kish': 'Iran',
+        'Maria Enzersdorf': 'Austria',
+        'Mashhad': 'Iran',
+        'Plovdiv': 'Bulgaria',
+        'Riffa': 'Bahrain',
+        'Sankt Pölten': 'Austria',
+        'Sarajevo': 'Bosnia and Herzegovina',
+        'Seattle': 'USA',
+        'Seoul': 'South Korea',
+        'Sidon': 'Lebanon',
+        'Tashkent': 'Uzbekistan',
+        'Tehran': 'Iran',
+        'Vientiane': 'Laos',
+        'Volgograd': 'Russia'
+    }
+
+    fecha_limite = pd.to_datetime("2022-12-18")
+    # Buscamos filas (tr)
+    filas = soup.find_all(['h2', "h3" , 'a', 'div', 'p'])
+
+    for fila in filas:
+    # Detectamos el año en encabezados como antes
+        if fila.name == 'div' and 'mw-heading' in fila.get('class', []):
+            match_año = re.search(r'(20\d{2})', fila.get_text())
+            if match_año: año_actual = match_año.group(1)
+            continue
+        
+        if fila.name == 'p':
+            texto_p = fila.get_text(strip=True)
+            if re.match(r'^(20\d{2}|Friendly)', texto_p, re.IGNORECASE):
+                qualif = texto_p
+            continue
+        
+        if fila.name == 'div' and 'footballbox' in fila.get('class', []):
+
+            # 2. Extraer datos usando los nombres de clase que identificamos en el HTML
+            fecha = fila.find('div', class_='fdate').get_text(strip=True)
+            local = fila.find('th', class_='fhome').get_text(strip=True)
+            marcador_crudo = fila.find('th', class_='fscore').get_text(strip=True)
+            visita = fila.find('th', class_='faway').get_text(strip=True)
+            
+            # El estadio está en un div con clase 'fright'
+            # Usamos .get_text() y luego limpiamos el texto
+            venue_info = fila.find('div', class_='fright')
+            venue = venue_info.find('span', itemprop='name address').get_text(strip=True) #if venue_info else "N/A"
+            city_url = venue_info.find('span', itemprop='name address').find_all('a')[1]['href']
+            city_text = venue_info.find('span', itemprop='name address').find_all('a')[1].get_text(strip=True)
+            url_completa = f"https://en.wikipedia.org{city_url}"
+            country = ciudad_a_pais.get(city_text, "Desconocido")
+            
+            fecha_dt = pd.to_datetime(fecha)
+            if fecha_dt <= fecha_limite: continue
+
+            # Extraemos goles
+            match_marcador = re.search(r'(\d+)\s*[–-]\s*(\d+)', marcador_crudo)
+            
+            if not match_marcador:
+                continue
+            
+            goles_1 = int(match_marcador.group(1))
+            goles_2 = int(match_marcador.group(2))
+            
+            if local.lower() == 'iran':
+                opposite = visita
+                goles_equipo = goles_1
+                goles_rival = goles_2                  
+            else:
+                opposite = local 
+                goles_equipo = goles_2
+                goles_rival = goles_1                     
+            
+            local_a = local.lower()
+            estadio_a = country.lower()
+            visita_a = visita.lower()
+
+            if local_a in estadio_a:
+                if obtener_codigo_pais(local, df_ranking_fifa) == codigo_pais:
+                    condicion = "L"
+                else:
+                    condicion = "V"
+            elif visita_a in estadio_a:  
+                if obtener_codigo_pais(visita, df_ranking_fifa) == codigo_pais:                      
+                    condicion = "L"
+                else:
+                    condicion = "V"               
+            else:
+                condicion = "N" 
+                
+            penal_info = fila.find('a', title='Penalty shoot-out (association football)')
+            
+            if not penal_info:
+                pen = False
+            else:
+                pen = True     
+            
+        # Guardamos (ajustando índices de elementos_fila según lo detectado)
+            partidos.append({
+                "Seleccion": codigo_pais,
+                "Fecha": fecha_dt.strftime("%Y-%m-%d"),
+                "Tipo_Partido": qualif, # Suele ser el torneo
+                "Venue": venue + ", "+ country,
+                "Condicion": condicion,
+                "Oponente": opposite,
+                "Goles_Equipo": goles_equipo,
+                "Goles_Rival": goles_rival,
+                "Resultado_Original": marcador_crudo,
+                "Es_Penales": pen,
+                "Es_Tiempo_Extra": "a.e.t." in marcador_crudo.lower(),
+            })      
+    return pd.DataFrame(partidos)
