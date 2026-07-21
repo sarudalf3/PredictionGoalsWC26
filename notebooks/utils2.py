@@ -28,7 +28,8 @@ def preparar_calendario(lista_partidos):
             'Date': partido['local_date'],
             'home_score' : partido['home_score'],
             'away_score' : partido['away_score'],
-            'stadium_id' : partido['stadium_id']
+            'stadium_id' : partido['stadium_id'],
+            'type': partido['type']
         })
         # Registro 2: Perspectiva del Visitante
         rows.append({
@@ -38,7 +39,8 @@ def preparar_calendario(lista_partidos):
             'Date': partido['local_date'],
             'home_score' : partido['away_score'],
             'away_score' : partido['home_score'],
-            'stadium_id' : partido['stadium_id']            
+            'stadium_id' : partido['stadium_id'],
+            'type': partido['type']            
         })
     
     return pd.DataFrame(rows)
