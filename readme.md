@@ -24,7 +24,6 @@ En cada iteración, los modelos serializados fueron actualizados, generando pred
 
 *   `notebooks/`: Contiene el análisis exploratorio, entrenamiento de modelos y evaluación.
 *   `data/`: Datasets originales, features calculadas y las predicciones históricas por fase (`predictions_r32.parquet`, `predictions_r16.parquet`, etc.).
-*   `models/`: Modelos actualizados y listos para inferencia tras cada fase.
 
 ## 📊 Evaluación y Métricas
 
